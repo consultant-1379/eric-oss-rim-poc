@@ -1,0 +1,61 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+modelVersion: 2.0
+
+import:
+  common: ../common-properties.yaml
+
+properties:
+  - image-registry-path: armdocker.rnd.ericsson.se
+
+env:
+  - PWD
+
+var:
+  - version
+  - image-full-name-internal
+  - image-repopath-internal
+
+rules:
+
+  csar-package:
+    - task: init-csar-folder
+      cmd:
+        - mkdir -p .bob/csar-output/
+        - mkdir -p .bob/csar/Metadata/
+        - mkdir -p .bob/csar/Definitions/
+        - mkdir -p .bob/csar/OtherDefinitions/ASD/Images
+    - task: copy-chart
+      cmd:
+        - cp -f .bob/${common.helm-chart-name}-internal/${common.helm-chart-name}-${var.version}.tgz .bob/csar/OtherDefinitions/ASD/
+    - task: save-images
+      cmd:
+        - docker pull ${image-registry-path}/proj-eric-oss-drop/eric-oss-helm-test:1.0.0-1
+        - docker tag ${var.image-full-name-internal}:${var.version} ${var.image-repopath-internal}/${common.docker-image-name}:${var.version}
+        - docker tag ${image-registry-path}/proj-eric-oss-drop/eric-oss-helm-test:1.0.0-1 proj-eric-oss-drop/eric-oss-helm-test:1.0.0-1
+        - docker save ${var.image-repopath-internal}/${common.docker-image-name}:${var.version} proj-eric-oss-drop/eric-oss-helm-test:1.0.0-1 -o .bob/csar/OtherDefinitions/ASD/Images/docker.tar
+    - task: resolve-templates
+      cmd:
+        - ytt -f csar/Tosca.yaml -f csar/values.yaml --data-value "name=${common.helm-chart-name}" --data-value "version=${var.version}" > .bob/csar/Metadata/Tosca.meta
+        - ytt -f csar/AppDescriptor.yaml -f csar/values.yaml --data-value "name=${common.helm-chart-name}" --data-value "version=${var.version}" > .bob/csar/Definitions/AppDescriptor.yaml
+        - ytt -f csar/ASD.yaml -f csar/values.yaml --data-value "name=${common.helm-chart-name}" --data-value "version=${var.version}" > .bob/csar/OtherDefinitions/ASD/ASD.yaml
+    - task: packaging
+      docker-image: csar-package-tool
+      docker-flags:
+        - "--volume ${env.PWD}/.bob/:/target"
+        - "--workdir /target/csar"
+      cmd: "generate --helm3 --images OtherDefinitions/ASD/Images/docker.tar --name ${common.helm-chart-name} --tosca /target/csar/Metadata/Tosca.meta --output ../csar-output/"

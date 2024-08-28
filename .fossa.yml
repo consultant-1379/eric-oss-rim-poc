@@ -1,0 +1,32 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+version: 3
+cli:
+  server: https://scasfossa-staging.internal.ericsson.com/
+  fetcher: custom
+  project: eric-oss-rim-poc
+analyze:
+  modules:
+    - name: eric-oss-rim-poc
+      type: maven
+      path: .
+    - name: eric-oss-rim-poc-api
+      type: maven
+      path: eric-oss-rim-poc-api
+    - name: eric-oss-rim-poc-app
+      type: maven
+      path: eric-oss-rim-poc-app

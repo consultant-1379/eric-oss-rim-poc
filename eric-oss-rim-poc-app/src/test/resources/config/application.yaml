@@ -1,0 +1,64 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+#Parameter here (of same name) will override those in the src/main/resources directory
+# REF  https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.files (2b)
+spring:
+  profiles:
+    active: "test"
+  kafka:
+    mode:
+      enabled: false
+    bootstrap-servers: "localhost:9092"
+
+    consumer:
+      auto-offset-reset: "earliest"
+      partition-assignment-strategy : "org.apache.kafka.clients.consumer.CooperativeStickyAssignor"
+      concurrency : 3 # current implementation of parser has output topic with three partitions
+      max-poll-records : 5
+      max-poll-interval-ms : 30000
+
+      discard-rops-older-than-minutes: ${SPRING_KAFKA_CONSUMER_DISCARD_ROPS_OLDER_THAN_MINUTES:52560000} # 100 Years x 365 Days/year ( exclude leap year 2 days) x 24 hours/day x 60 mins/hour
+
+    schema-registry:
+        url: "mock://testurl"
+
+  main: # Identifying the Beans in Conflict : https://www.baeldung.com/spring-boot-bean-definition-override-exception#identifying-the-beans-in-conflict
+    allow-bean-definition-overriding : true
+
+app:
+  data:
+    customerid: "tmo001"
+    allow-list:
+      allow-all-fdn: false
+
+client:
+  retries:
+    apiRetries: 3
+    tooManyRequestWaitMs: 100
+    serverErrorWaitMs: 100
+  auth-refresh-period: 1200
+  cts:
+    base-path: "https://localhost/oss-core-ws/rest"
+    login:
+      username: cts-user
+      password: cts-pwd
+  ncmp:
+    base-path: "https://localhost"
+    login:
+      username: ncmp-user
+      password: ncmp-pwd
+

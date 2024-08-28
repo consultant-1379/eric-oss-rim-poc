@@ -1,0 +1,56 @@
+[
+  {
+    "dmi-registry:cm-handles": {
+      "id": "92F1CB35798FD7D13BCC6FF825D89CD6",
+      "dmi-service-name": "",
+      "dmi-data-service-name": "http://eric-eo-enm-adapter:80",
+      "dmi-model-service-name": "http://eric-oss-enm-model-adapter:8080",
+      "public-properties": [
+        {
+          "name": "emsId",
+          "value": "32"
+        }
+      ],
+      "additional-properties": [
+        {
+          "name": "targetDnPrefix",
+          "value": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002"
+        },
+        {
+          "name": "ossModelIdentity",
+          "value": "22.Q1-R48A08"
+        },
+        {
+          "name": "nodeModelIdentity",
+          "value": "22.Q1-R48A08"
+        },
+        {
+          "name": "subSystem",
+          "value": "32"
+        },
+        {
+          "name": "targetNode",
+          "value": "ManagedElement=NR03gNodeBRadio00002"
+        },
+        {
+          "name": "softwareSyncStatus",
+          "value": "AS_IS"
+        },
+        {
+          "name": "neType",
+          "value": "RadioNode"
+        }
+      ],
+      "state": {
+        "cm-handle-state": "READY",
+        "last-update-time": "2022-08-18T14:35:21.530+0000",
+        "data-sync-enabled": false,
+        "datastores": {
+          "operational": {
+            "sync-state": "NONE_REQUESTED"
+          }
+        }
+      }
+    }
+  }
+]

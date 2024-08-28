@@ -1,0 +1,92 @@
+{
+  "type": "record",
+  "name": "EP_XnU_GNBCUUP_1",
+  "namespace": "NR.RAN.PM_COUNTERS",
+  "fields": [
+    {
+      "name": "nodeFDN",
+      "type": "string"
+    },
+    {
+      "name": "elementType",
+      "type": "string"
+    },
+    {
+      "name": "ropBeginTime",
+      "type": "string"
+    },
+    {
+      "name": "ropEndTime",
+      "type": "string"
+    },
+    {
+      "name": "moFdn",
+      "type": "string"
+    },
+    {
+      "name": "suspect",
+      "type": "boolean"
+    },
+    {
+      "name": "pmCounters",
+      "type": {
+        "type": "record",
+        "name": "pmCounters",
+        "fields": [
+          {
+            "name": "pmPdcpPktFwdTransDlQos",
+            "type": {
+              "type": "record",
+              "name": "pmPdcpPktFwdTransDlQos",
+              "fields": [
+                {
+                  "name": "counterType",
+                  "type": "string",
+                  "default": "compressedPdf"
+                },
+                {
+                  "name": "counterValue",
+                  "type": {
+                    "type": "array",
+                    "items": "long"
+                  }
+                },
+                {
+                  "name": "isValuePresent",
+                  "type": "boolean",
+                  "default": false
+                }
+              ]
+            }
+          },
+          {
+            "name": "pmPdcpPktFwdTransDlDiscQos",
+            "type": {
+              "type": "record",
+              "name": "pmPdcpPktFwdTransDlDiscQos",
+              "fields": [
+                {
+                  "name": "counterType",
+                  "type": "string",
+                  "default": "compressedPdf"
+                },
+                {
+                  "name": "counterValue",
+                  "type": {
+                    "type": "array",
+                    "items": "long"
+                  }
+                },
+                {
+                  "name": "isValuePresent",
+                  "type": "boolean",
+                  "default": false
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

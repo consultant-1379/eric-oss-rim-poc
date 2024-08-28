@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "754aebeb-e25e-4050-823d-94d93d5b8373",
+		"name": "RIM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6139979"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/v1/trigger/pmrop",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{"timeStamp" : <EPOC Time Stamp>, "customerId" : "<customerId>", "nRops" : <rop count>}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/trigger/pmrop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trigger",
+						"pmrop"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

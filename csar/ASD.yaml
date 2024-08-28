@@ -1,0 +1,12 @@
+#@ load("@ytt:data", "data")
+---
+asdId: 1
+asdSchemaVersion: 1.0.0
+asdProvider: Ericsson
+asdApplicationName: #@ data.values.name
+asdApplicationVersion: #@ data.values.version
+asdApplicationInfoName: #@ data.values.infoName
+asdInfoDescription: #@ data.values.infoDescription
+deploymentItems:
+  deploymentItemId: 1
+  artifactId: #@ "OtherDefinitions/ASD/{}-{}.tgz".format(data.values.name, data.values.version)

@@ -1,0 +1,6 @@
+#@data/values
+---
+name: eric-oss-rim-poc
+version: 1.0.0-SNAPSHOT
+infoName: Remote Interference Mitigation POC Application
+infoDescription: Remote Interference Mitigation application for mitigating atmospheric ducting effect on Radio Network.

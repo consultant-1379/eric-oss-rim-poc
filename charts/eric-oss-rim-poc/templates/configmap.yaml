@@ -1,0 +1,66 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "eric-oss-rim-poc.name" . }}-configmap
+  labels:
+  {{- include "eric-oss-rim-poc.labels" . | nindent 4 }}
+  annotations:
+  {{- include "eric-oss-rim-poc.annotations" . | nindent 4 }}
+data:
+  application.properties: |-
+    management.endpoint.metrics.enabled=true
+    management.endpoints.web.exposure.include=*
+    management.endpoint.prometheus.enabled=true
+    management.metrics.export.prometheus.enabled=true
+    management.metrics.web.server.auto-time-requests=true
+    app.local={{.Values.app.local}}
+    app.data.pm.rop.scheduler.cron={{.Values.app.data.pm.rop.scheduler.cron}}
+    app.data.pm.rop.kafka.cron={{.Values.app.data.pm.rop.kafka.cron}}
+    app.data.pm.rop.csv.usePreCalculatedAvgDeltaIpN={{.Values.app.data.pm.rop.csv.usePreCalculatedAvgDeltaIpN}}
+    app.data.pm.rop.path={{.Values.app.data.pm.rop.path}}
+    app.data.customerid={{.Values.app.data.customerid}}
+    app.data.timewarp={{.Values.app.data.timewarp}}
+    app.data.gNBIdLength={{.Values.app.data.gNBIdLength}}
+    app.data.allow-list.allow-all-fdn={{.Values.app.data.allowList.allowAllFdn}}
+    app.data.netsim={{.Values.app.data.netsim}}
+    client.retries.apiRetries={{.Values.client.retries.apiRetries}}
+    client.retries.serverErrorWaitMs={{.Values.client.retries.serverErrorWaitMs}}
+    client.retries.serverErrorMaxWaitMs={{.Values.client.retries.serverErrorMaxWaitMs}}
+    client.cts.base-path={{.Values.client.cts.basePath}}
+    client.ncmp.base-path={{.Values.client.ncmp.basePath}}
+    spring.datasource.url={{.Values.spring.datasource.url}}
+    spring.jpa.hibernate.ddl-auto={{ index .Values.spring.jpa "hibernate.ddlAuto" }}
+    spring.kafka.mode.enabled={{.Values.spring.kafka.mode.enabled}}
+    spring.kafka.topics.input.name={{.Values.spring.kafka.topics.input.name}}
+    spring.kafka.bootstrap-servers={{.Values.spring.kafka.bootstrapServers}}
+    spring.kafka.schema-registry.url={{.Values.spring.kafka.schemaRegistry.url}}
+    spring.datasource.exposed={{.Values.spring.datasource.exposed}}
+    bdr.service={{.Values.objectStorage.serviceEndpoint}}
+    bdr.bucket={{.Values.objectStorage.bucketName}}
+    mitigation.closeLoopMode={{.Values.mitigation.closeLoopMode}}
+    mitigation.emergencyMode={{.Values.mitigation.emergencyMode}}
+    threading.poolSizeForCtsGeoQuery={{.Values.threading.poolSizeForCtsGeoQuery}}
+    threading.poolSizeForNcmpCmQuery={{.Values.threading.poolSizeForNcmpCmQuery}}
+    threading.poolSizeForULPowerMitigation={{.Values.threading.poolSizeForULPowerMitigation}}
+    threading.poolSizeForCIOMitigation={{.Values.threading.poolSizeForCIOMitigation}}
+    threading.poolSizeForRelationSyncQuery={{.Values.threading.poolSizeForRelationSyncQuery}}
+    tropoduct.loadFromUrl={{.Values.tropoduct.loadFromUrl}}
+    tropoduct.retryUrlTimes={{.Values.tropoduct.retryUrlTimes}}
+    tropoduct.backoffRetryUrlMilliSeconds={{.Values.tropoduct.backoffRetryUrlMilliSeconds}}
+    cell-selection-config.use-weather-data={{.Values.cellSelectionConfig.useWeatherData}}

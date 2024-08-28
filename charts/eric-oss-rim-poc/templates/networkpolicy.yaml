@@ -1,0 +1,64 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+{{- if .Values.global -}}
+{{- if and .Values.global.networkPolicy .Values.networkPolicy -}}
+{{- if and .Values.global.networkPolicy.enabled .Values.networkPolicy.enabled -}}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "eric-oss-rim-poc.fullname" . }}
+  labels:
+  {{- include "eric-oss-rim-poc.labels" . | nindent 4 }}
+  annotations:
+  {{- include "eric-oss-rim-poc.annotations" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "eric-oss-rim-poc.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  policyTypes:
+    - Ingress
+  ingress:
+    - {}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "eric-oss-rim-poc.fullname" . }}-store-allow
+  labels:
+  {{- include "eric-oss-rim-poc.labels" . | nindent 4 }}
+  annotations:
+  {{- include "eric-oss-rim-poc.annotations" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: eric-data-object-storage-mn
+  policyTypes:
+    - Ingress
+  ingress:
+    - ports:
+        - protocol: TCP
+          port: 9000
+      from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: {{ include "eric-oss-rim-poc.name" . }}
+              app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+{{- end -}}
+{{- end -}}

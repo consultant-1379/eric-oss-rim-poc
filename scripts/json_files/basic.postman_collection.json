@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "73a228a3-43c5-456f-aec7-62376fe6fe7e",
+		"name": "TechDay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8468141"
+	},
+	"item": [
+		{
+			"name": "preparation",
+			"item": [
+				{
+					"name": "sys_login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Login",
+								"value": "{{SYS_USERNAME}}",
+								"type": "text"
+							},
+							{
+								"key": "X-password",
+								"value": "{{SYS_PASSWORD}}",
+								"type": "text"
+							},
+							{
+								"key": "X-tenant",
+								"value": "master",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://{{PF_HOSTNAME}}/auth/v1/login",
+							"protocol": "https",
+							"host": [
+								"{{PF_HOSTNAME}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_route",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"rim_route\",\r\n  \"predicates\": [\r\n    {\r\n      \"name\": \"Path\",\r\n      \"args\": {\r\n        \"_genkey_0\": \"/rapp/rim/**\"\r\n      }\r\n    }\r\n  ],\r\n  \"filters\": [\r\n    {\r\n        \"name\": \"StripPrefix\",\r\n        \"args\": {\r\n            \"_genkey_0\": \"2\"\r\n        }\r\n    }\r\n  ],\r\n  \"uri\": \"http://eric-oss-rim-poc:8080\",\r\n  \"order\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{PF_HOSTNAME}}/v1/routes/",
+							"protocol": "https",
+							"host": [
+								"{{PF_HOSTNAME}}"
+							],
+							"path": [
+								"v1",
+								"routes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LoginToEIAP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Login",
+						"value": "{{SO_USERNAME}}",
+						"type": "text"
+					},
+					{
+						"key": "X-password",
+						"value": "{{SO_PASSWORD}}",
+						"type": "text"
+					},
+					{
+						"key": "X-tenant",
+						"value": "master",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://{{SO_HOSTNAME}}/auth/v1/login",
+					"protocol": "https",
+					"host": [
+						"{{SO_HOSTNAME}}"
+					],
+					"path": [
+						"auth",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TriggerRIM",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{"timeStamp" : <EPOC Time Stamp>, "customerId" : "<customerId>", "nRops" : <rop count>}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{SO_HOSTNAME}}/rapp/rim/v1/trigger/pmrop",
+					"protocol": "https",
+					"host": [
+						"{{SO_HOSTNAME}}"
+					],
+					"path": [
+						"rapp",
+						"rim",
+						"v1",
+						"trigger",
+						"pmrop"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

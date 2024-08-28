@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ~ COPYRIGHT Ericsson 2022
+ ~
+ ~
+ ~
+ ~ The copyright to the computer program(s) herein is the property of
+ ~
+ ~ Ericsson Inc. The programs may be used and/or copied only with written
+ ~
+ ~ permission from Ericsson Inc. or in accordance with the terms and
+ ~
+ ~ conditions stipulated in the agreement/contract under which the
+ ~
+ ~ program(s) have been supplied.
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.10</version>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1030750 -->
+  </parent>
+  <groupId>com.ericsson.oss.apps</groupId>
+  <artifactId>eric-oss-rim-poc</artifactId>
+  <version>1.60.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>eric-oss-rim-poc</name>
+
+  <scm>
+    <developerConnection>${ericsson.scm.url}</developerConnection>
+    <connection>${ericsson.scm.url}</connection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <!-- Set compiler Java version, MUST match the Dockerfile JDK version -->
+    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.target>17</maven.compiler.target>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <ericsson.scm.url>
+      scm:git:[fetch=]ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.oss.apps/eric-oss-rim-poc[push=]ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.oss.apps/eric-oss-rim-poc
+    </ericsson.scm.url>
+
+    <!-- 3PP Versions -->
+    <version.jackson-databind-nullable>0.2.3</version.jackson-databind-nullable>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1017012 -->
+    <version.micrometer>1.9.3</version.micrometer>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1021184 -->
+    <version.openjdk>17</version.openjdk>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1043072 -->
+    <version.spring-cloud>2021.0.3</version.spring-cloud>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1014257 -->
+    <version.springfox>3.0.0</version.springfox>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=943461 -->
+    <version.spot-bugs>4.7.1</version.spot-bugs>
+    <version.okhttp3>4.10.0</version.okhttp3>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1016523 -->
+    <version.geotools>28.1</version.geotools>
+
+    <version.awaitility>4.2.0</version.awaitility>
+
+    <version.opencsv>5.7.1</version.opencsv>
+    <version.com.amazonaws>2.19.13</version.com.amazonaws>
+    <version.commons-codec>1.15</version.commons-codec>
+
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=989017&category= -->
+    <version.avro>1.11.0</version.avro>
+    <!-- Not in Bazaar (request open)-->
+    <version.io.confluent.kafka.avro.serializer>7.3.1</version.io.confluent.kafka.avro.serializer>
+
+    <!-- Ericsson Dependency Versions -->
+    <version.eric-common-logging>1.0.23</version.eric-common-logging>
+
+    <!-- Build Dependencies -->
+    <version.openapi-generator-maven-plugin>6.0.1</version.openapi-generator-maven-plugin>
+    <version.maven-sortpom-plugin>2.13.1</version.maven-sortpom-plugin>
+    <version.maven-scm-provider-gitexe>1.8.1</version.maven-scm-provider-gitexe>
+
+    <!-- Test Dependencies -->
+    <version.license-maven-plugin>3.0</version.license-maven-plugin>
+    <version.versions-manen-plugin>2.13.0</version.versions-manen-plugin>
+    <version.sonar-maven-plugin>3.8.0.2131</version.sonar-maven-plugin>
+    <!-- JaCoCo plugin for Java Code Coverage -->
+    <version.jacoco-maven.plugin>0.8.8</version.jacoco-maven.plugin>
+    <!-- Minimum ratio or percentage of instructions to be covered, used by
+            JaCoCo plugin. Industry standard is 0.8 or 80% which allows at least 80%
+            of the code to be covered by the test cases. -->
+    <jacoco-maven-plugin.coveredratio.minimum>0.5</jacoco-maven-plugin.coveredratio.minimum>
+    <version.jgrapht>1.5.1</version.jgrapht>
+
+    <!-- Spring cloud contract plugin for testing -->
+    <version.spring-cloud-contract>3.1.5</version.spring-cloud-contract>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1025748 -->
+    <version.bcel>6.6.0</version.bcel>
+    <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1039571 -->
+    <version.snakeyaml>2.0</version.snakeyaml>
+
+    <sonar.coverage.exclusions>**/PmConstants*.java</sonar.coverage.exclusions>
+  </properties>
+
+  <modules>
+    <module>eric-oss-rim-poc-api</module>
+    <module>eric-oss-rim-poc-app</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${version.spring-cloud}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>${version.snakeyaml}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.retry</groupId>
+      <artifactId>spring-retry</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${version.versions-manen-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${version.license-maven-plugin}</version>
+          <configuration>
+            <header>license/copyright-2023.txt</header>
+            <validHeaders>
+              <validHeader>license/copyright-2022.txt</validHeader>
+              <validHeader>license/copyright-2021.txt</validHeader>
+              <validHeader>license/copyright-2020.txt</validHeader>
+            </validHeaders>
+            <excludes>
+              <exclude>.bob/*</exclude>
+              <exclude>.bob*/</exclude>
+              <exclude>bob/*</exclude>
+              <exclude>bob*/</exclude>
+              <exclude>csar/</exclude>
+              <exclude>k8s-logs/*</exclude>
+              <exclude>**/.helmignore</exclude>
+              <exclude>**/*.html</exclude>
+              <exclude>**/_helpers.tpl</exclude>
+              <exclude>**/*.tgz</exclude>
+              <exclude>**/VERSION*</exclude>
+              <exclude>**/*.repo</exclude>
+              <exclude>license/copyright*</exclude>
+              <exclude>design-rule-check-report*</exclude>
+              <exclude>helm-install-dry-run.log</exclude>
+              <exclude>*artifact.properties</exclude>
+              <exclude>**/*.txt</exclude>
+              <exclude>**/custom_stages.yaml</exclude>
+              <exclude>ci/scripts/update_cbos.sh</exclude>
+              <exclude>**/*.Jenkinsfile</exclude>
+              <exclude>**/*.adoc</exclude>
+              <exclude>**/*.config</exclude>
+              <exclude>**/rest2html*.zip</exclude>
+              <exclude>settings.xml</exclude>
+              <exclude>**/fossa/*</exclude>
+            </excludes>
+            <headerDefinitions>
+              <headerDefinition>./license/javaHeaderDefinition.xml</headerDefinition>
+              <headerDefinition>./license/xmlHeaderDefinition.xml</headerDefinition>
+            </headerDefinitions>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>${version.sonar-maven-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${version.jacoco-maven.plugin}</version>
+          <configuration>
+            <append>true</append>
+            <excludes>
+              <exclude>**/api/**/*.*</exclude>
+            <exclude>**/models/*.*</exclude>
+                <exclude>**/models/*.*</exclude>
+                <exclude>**/models/*.*</exclude>
+                <exclude>**/models/*.*</exclude>
+                <exclude>**/models/*.*</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>snapshot</id>
+      <name>armseligic-snapshot</name>
+      <url>https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-dev-local</url>
+    </snapshotRepository>
+    <repository>
+      <id>release</id>
+      <name>armseligic-release</name>
+      <url>https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-release-local</url>
+    </repository>
+  </distributionManagement>
+
+</project>

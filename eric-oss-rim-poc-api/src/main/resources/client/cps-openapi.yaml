@@ -1,0 +1,64 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+openapi: 3.0.1
+info:
+  title: ONAP Open API v3 Configuration Persistence Service
+  description: Configuration Persistence Service is a Model Driven Generic Database
+  version: "1.0.0"
+servers:
+  - url: /cps/api
+tags:
+  - name: cps-data
+paths:
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    get:
+      description: Query data nodes for the given dataspace and anchor using CPS path
+      tags:
+        - cps-query
+      summary: Query data nodes
+      operationId: getNodesByDataspaceAndAnchorAndCpsPath
+      x-codegen-request-body-name: xpath
+      parameters:
+        - name: dataspace-name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: cps-path
+          in: query
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: include-descendants
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object

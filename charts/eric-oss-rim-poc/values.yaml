@@ -1,0 +1,273 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+# Default values for eric-oss-rim-poc.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+#global:
+#  timezone: UTC
+#  registry:
+#    url: armdocker.rnd.ericsson.se
+#    pullPolicy: IfNotPresent
+#  #Secret must be manually created in the namespace, no default value
+#  pullSecret: eric-adp-example-secret
+#  fsGroup:
+#    manual: 40514
+#    namespace: true
+#  runAsUser:
+#    manual: 40514
+#    namespace: true
+#  # The IP family the service belongs to when service.type is set to ClusterIP.
+#  # Options are: IPv4, IPv6
+#  internalIPFamily:
+#  security:
+#    policyBinding:
+#      create: true
+#    policyReferenceMap:
+#      default-restricted-security-policy: "<restricted security policy at customer deployment>"
+#    tls:
+#      enabled: true
+
+replicaCount: 1
+
+podDisruptionBudget:
+  # Minimum number/percentage of Pods that must remain available during the planned disruption.
+  # Value can be expressed as an integer or as a percentage. When specified as a percentage of the Pods,
+  # if it does not map to an exact number, Kubernetes rounds up to the nearest integer.
+  # minAvailable: 2 # example value for 2 pods defined as integer
+  minAvailable: "40%"
+
+updateStrategy:
+ type: RollingUpdate
+ rollingUpdate:
+   maxSurge: 1
+   maxUnavailable: 0
+
+#Empty labels list for application deployment engineer to add more labels (In Compliance with DR-D1121-068).
+labels: {}
+
+imageCredentials:
+  repoPath:
+  eric-oss-rim-poc:
+    repoPath: # see default in eric-product-info.yaml
+    registry: {}
+      # overrides global registry url
+      # url:
+      #- Secret must be manually created in the namespace, no default value
+      # pullSecret: REPO_SECRET
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+annotations: {}
+
+service:
+  type: ClusterIP
+  port: 8080    # Changed from 80 to 8080 and spring application is hosted on 8080
+  endpoints:
+    chassisapi:
+      tls:
+        enforced: required
+        verifyClientCertificate: required
+
+ingress:
+  enabled: false
+  ingressClass: OAM-IngressClass
+  hosts:
+    - host: chart-example.local
+      paths: [/]
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+eric-pm-server:
+  rbac:
+    appMonitoring:
+      enabled: true
+
+prometheus:
+  path: /actuator/prometheus
+  scrape: true
+
+terminationGracePeriodSeconds: 30
+
+resources:
+  eric-oss-rim-poc:
+    requests:
+      memory: 256Mi
+      cpu: 125m
+      ephemeral-storage: ""
+    limits:
+      memory: 8Gi
+      cpu: 2
+      ephemeral-storage: ""
+    jvm:
+      initialMemoryAllocationPercentage: 50
+      smallMemoryAllocationMaxPercentage: 70
+      largeMemoryAllocationMaxPercentage: 50
+
+autoScaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+topologySpreadConstraints:
+  deployment: []
+  test: []
+
+tolerations:
+  - key: node.kubernetes.io/not-ready
+    operator: Exists
+    effect: NoExecute
+    tolerationSeconds: 0
+  - key: node.kubernetes.io/unreachable
+    operator: Exists
+    effect: NoExecute
+    tolerationSeconds: 0
+
+affinity:
+  podAntiAffinity: "soft"
+
+probes:
+  eric-oss-rim-poc:
+    livenessProbe:
+      failureThreshold: 6
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      timeoutSeconds: 10
+    readinessProbe:
+      failureThreshold: 6
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      timeoutSeconds: 10
+
+podPriority:
+  eric-oss-rim-poc:
+    priorityClassName: ""
+# choice='unconfined, runtime/default, localhost' [ default= ""]
+# Configuration of AppArmor profile type. The following values are possible:
+# unconfined  - Indicates that there is no profile loaded.
+# runtime/default - Applies the default profile of the container engine.
+# localhost   - Applies a specific profile loaded on the host
+appArmorProfile:
+  type: ""
+seccompProfile:
+  type: "RuntimeDefault"
+
+objectStorage:
+  serviceEndpoint: http://eric-data-object-storage-mn:9000
+  secretName: eric-data-object-storage-mn-secret
+  accessKeyName: accesskey
+  secretKeyName: secretkey
+  bucketName: rim
+
+client:
+  retries:
+    apiRetries: 5
+    serverErrorWaitMs: 10000
+    serverErrorMaxWaitMs: 60000
+  cts:
+    basePath: "https://th.stsvp1eic27.stsoss.sero.gic.ericsson.se/oss-core-ws/rest"
+    login:
+      secretName: eric-oss-rim-poc-cts-secret
+      username: cts-user
+      password: cts-pwd
+  ncmp:
+    basePath: "https://th.stsvp1eic27.stsoss.sero.gic.ericsson.se"
+    login:
+      secretName: eric-oss-rim-poc-ncmp-secret
+      username: ncmp-user
+      password: ncmp-pwd
+
+app:
+  local: false
+  data:
+    timewarp: 0
+    customerid: "netsim001"
+    gNBIdLength: 24
+    pm:
+      rop:
+        path: "pm/netsim_rop/"
+        scheduler:
+          cron: "0 5,20,35,50 * 30 2 *" # 30 Feb , effectively disable
+        kafka:
+          cron: "0 14,29,44,59 * * * *" # Parsers produce data 5 min after ROPS, RIM kafka finished reading data at 7 min after the ROP. This runs featureCalculator.
+        csv:
+          usePreCalculatedAvgDeltaIpN: false
+    allowList:
+      allowAllFdn: false
+    netsim: false
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1
+    exposed: false
+  jpa:
+    hibernate.ddlAuto: create
+  kafka:
+    mode:
+      enabled: true
+    topics:
+      input:
+        name: "eric-oss-3gpp-pm-xml-ran-parser-nr"
+    bootstrapServers: eric-oss-dmm-kf-op-sz-kafka-bootstrap:9092
+
+    schemaRegistry:
+        url: http://eric-schema-registry-sr:8081
+
+mitigation:
+  closeLoopMode: false
+  emergencyMode: false
+
+persistentVolumeClaim:
+  size: 10Gi
+
+persistentStorage:
+  dbVolume:
+    enabled: true
+    persistentVolumeClaim:
+      size:
+      storageClassName:
+
+threading:
+  poolSizeForCtsGeoQuery: 8
+  poolSizeForNcmpCmQuery: 4
+  poolSizeForULPowerMitigation: 4
+  poolSizeForCIOMitigation: 4
+  poolSizeForRelationSyncQuery: 4
+
+tropoduct:
+  loadFromUrl: true
+  retryUrlTimes: 2
+  backoffRetryUrlMilliSeconds: 1000
+
+cellSelectionConfig:
+  useWeatherData: true

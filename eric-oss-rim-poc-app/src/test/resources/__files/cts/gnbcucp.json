@@ -1,0 +1,51 @@
+[
+  {
+    "type": "ctw/gnbcucp",
+    "id": 67,
+    "href": "ctw/gnbcucp/67",
+    "externalId": "DD9220ED04FB3E84D94344E6256E22F0/ericsson-enm-ComTop:ManagedElement=NR122gNodeBRadio00008/ericsson-enm-GNBCUCP:GNBCUCPFunction=1",
+    "name": "Europe/Ireland/NR122gNodeBRadio00008/NR122gNodeBRadio00008/1",
+    "revisionNumber": 1,
+    "createdOn": "2023-03-03T13:54:08.047Z",
+    "createdBy": "sysadm",
+    "status": "operating",
+    "lastModifiedOn": "2023-03-03T13:54:08.047Z",
+    "lastModifiedBy": "sysadm",
+    "revisionGroupKey": {
+      "type": "revisionGroupKey",
+      "keyValue": 67
+    },
+    "versionNumber": 1,
+    "key": {
+      "type": "ctw/gnbcucpKey",
+      "keyValue": 67
+    },
+    "wirelessNFConnections": [
+      {
+        "mode": "LOADED",
+        "value": {
+          "type": "ctw/networkfunctionconnection",
+          "id": 66,
+          "href": "ctw/netfunctioncon/66",
+          "name": "128-49-4848-22",
+          "_type": "E1_gnbcucp_gnbcuup",
+          "revisionNumber": 1,
+          "createdOn": "2023-03-03T13:54:07.996Z",
+          "createdBy": "sysadm",
+          "status": "operating",
+          "lastModifiedOn": "2023-03-03T13:54:10.819Z",
+          "lastModifiedBy": "sysadm",
+          "versionNumber": 2,
+          "revisionGroupKey": {
+            "type": "revisionGroupKey",
+            "keyValue": 66
+          },
+          "key": {
+            "type": "ctw/networkfunctionconnectionKey",
+            "keyValue": 66
+          }
+        }
+      }
+    ]
+  }
+]

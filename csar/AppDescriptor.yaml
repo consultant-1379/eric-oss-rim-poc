@@ -1,0 +1,11 @@
+#@ load("@ytt:data", "data")
+---
+Description of an APP:
+  APPName: #@ data.values.name
+  APPVersion: #@ (data.values.version).rsplit("-")[0]
+  APPType: rApp
+APPComponent:
+  NameofComponent: #@ data.values.name
+  Path: OtherDefinitions/ASD/ASD.yaml
+  Version: #@ data.values.version
+  ArtefactType: Microservice

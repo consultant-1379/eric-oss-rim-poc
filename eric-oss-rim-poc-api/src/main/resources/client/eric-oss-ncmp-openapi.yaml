@@ -1,0 +1,41 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+openapi: 3.0.1
+info:
+  title: NCMP to CPS Proxy API
+  description: NCMP to CPS Proxy API
+  version: "1.0"
+servers:
+  - url: /ncmp
+paths:
+  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational:
+    $ref: 'eric-oss-ncmp-operations.yaml#/getResourceDataForPassthroughOperational'
+
+  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
+    $ref: 'eric-oss-ncmp-operations.yaml#/resourceDataForPassthroughRunning'
+
+  /v1/ch/{cm-handle}/modules:
+    $ref: 'eric-oss-ncmp-operations.yaml#/fetchModuleReferencesByCmHandle'
+
+  /v1/ch/searches:
+    $ref: 'eric-oss-ncmp-operations.yaml#/executeCmHandleSearch'
+
+  /v1/ch/{cm-handle}:
+    $ref: 'eric-oss-ncmp-operations.yaml#/retrieveCmHandleDetailsById'
+
+  /v1/data/ch/searches:
+    $ref: 'eric-oss-ncmp-operations.yaml#/queryCmHandles'

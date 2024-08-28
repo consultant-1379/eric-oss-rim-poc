@@ -1,0 +1,56 @@
+{
+  "ericsson-enm:ManagedElement": [
+    {
+      "id": "NR03gNodeBRadio00002",
+      "attributes": {
+        "dnPrefix": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002",
+        "managedElementType": "RadioNode",
+        "managedElementId": "NR03gNodeBRadio00002",
+        "neType": "RadioNode"
+      },
+      "ericsson-enm:GNBCUCPFunction": [
+        {
+          "id": "1",
+          "attributes": {
+            "gNBId": "1",
+            "gNBIdLength": "22",
+            "pLMNId": {
+              "mcc": 216,
+              "mnc": "wrong mnc"
+            }
+          },
+          "ericsson-enm:NRCellCU": [
+            {
+              "id": "NR03gNodeBRadio00002-1",
+              "attributes": {
+                "nRCellCUId": "NR03gNodeBRadio00002-1"
+              }
+            }
+          ]
+        }
+      ],
+      "ericsson-enm:GNBDUFunction": [
+        {
+          "id": "1",
+          "attributes": {
+            "gNBId": "1",
+            "gNBIdLength": "22",
+            "pLMNId": {
+              "mcc": 216,
+              "mnc": 30
+            }
+          },
+          "ericsson-enm:NRCellDU": [
+            {
+              "id": "NR03gNodeBRadio00002-1",
+              "attributes": {
+                "nRCellDUId": "NR03gNodeBRadio00002-1",
+                "nCI": "1343813"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

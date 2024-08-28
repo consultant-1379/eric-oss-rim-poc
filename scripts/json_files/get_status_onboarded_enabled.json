@@ -1,0 +1,32 @@
+{
+  "id": 22,
+  "name": "eric-oss-rim-poc",
+  "username": "Unknown",
+  "version": "1.0.19",
+  "size": "100MB",
+  "vendor": "Ericsson",
+  "type": "rApp",
+  "onboardedDate": "2022-12-13T10:29:46.474+00:00",
+  "status": "ONBOARDED",
+  "mode": "ENABLED",
+  "artifacts": [
+    {
+      "id": 35,
+      "name": "eric-oss-rim-poc",
+      "type": "HELM",
+      "version": "1.0.19-SNAPSHOT",
+      "status": "COMPLETED",
+      "location": "/api/eric-oss-rim-poc_1.0.19/charts/eric-oss-rim-poc/1.0.19-SNAPSHOT"
+    },
+    {
+      "id": 36,
+      "name": "docker.tar",
+      "type": "IMAGE",
+      "version": "--",
+      "status": "COMPLETED",
+      "location": "/v2/proj-eric-oss-drop/eric-oss-helm-test/manifests/1.0.0-1"
+    }
+  ],
+  "permissions": [],
+  "events": []
+}

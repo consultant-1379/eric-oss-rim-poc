@@ -1,0 +1,272 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+#Metrics related configurations
+management.endpoints.web.exposure.include: "*"
+management.endpoint.info.enabled: "true"
+management.endpoint.metrics.enabled: "true"
+management.endpoint.prometheus.enabled: "true"
+management.metrics.export.prometheus.enabled: "true"
+management.metrics.web.server.auto-time-requests: "true"
+management.info.env.enabled: "true"
+
+#opentracing.jaeger.enabled: "true"
+
+spring:
+  profiles:
+    active: "production"
+  jackson:
+    default-property-inclusion: "non_null"
+  task:
+    scheduling:
+      pool:
+        size: 2
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1} # "jdbc:h2:file:/h2db/rim;DB_CLOSE_DELAY=-1"
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    exposed: false
+  jpa:
+    hibernate.ddl-auto: ${JPA_HIBERNATE_DDL_AUTO:create} # "update"
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties.hibernate.enable_lazy_load_no_trans: true
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  kafka:
+    mode:
+      enabled: true
+    listenerId : counterParserTopicId
+    topics:
+      input:
+        name: "eric-oss-3gpp-pm-xml-ran-parser-nr"
+        compression: lz4
+      output:
+        partitions: 3
+        replicas: 1
+        compression: lz4
+        retention: 600000
+
+    bootstrap-servers: localhost:9092 # "eric-oss-dmm-kf-op-sz-kafka-bootstrap:9092"
+
+    schema-registry:
+        url: http://localhost:8081 # "http://eric-schema-registry-sr:8081" # double check port #
+
+    consumer:
+      group-id:  "rim-consumer-group"
+      auto-offset-reset: "earliest"
+      partition-assignment-strategy : "org.apache.kafka.clients.consumer.CooperativeStickyAssignor"
+      concurrency : 3 # current implementation of parser has output topic with three partitions
+      max-poll-records : 1000
+      session-timeout-ms: 15000
+      max-poll-reconnect-timeout-ms: 30000
+      max-poll-interval-ms : 30000
+      retry-backoff-ms: 100
+      reconnect-backoff-ms: 50
+      reconnect-backoff-max-ms: 30000
+      request-timeout-ms: 30000
+
+      discard-rops-older-than-minutes: 52560000 # 100 Years x 365 Days/year ( exclude leap year 2 days) x 24 hours/day x 60 mins/hour
+
+    producer:
+      acks-config: all
+      retries-config: 0
+      batch_size_config: 16384
+      linger_ms_config: 10
+      buffer_memory_config: 33554432
+      max-in-flight-requests-per-connection: 1
+
+    backoff:
+      interval-ms : 1000
+      max-attempts : 1
+
+endpoints:
+  health:
+    sensitive: "false"
+
+info:
+  app:
+    name: '@name@'
+    description: Microservice chassis app
+    version: '@version@'
+    legal: "COPYRIGHT Ericsson 2021 -
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied."
+
+#See more details about pattern layout: https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html
+#See more details about logging.pattern.level : https://docs.spring.io/spring-boot/docs/2.5.2/reference/html/features.html#features.logging.custom-log-configuration
+#logging.pattern.level: "%5p [%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}][%X{userName}]"
+
+#Set the stubrunner credentials:
+#stubrunner.username: <LAN SIGNUM ID>
+#stubrunner.password: <LAN encripted PWD or JFrog API Key>
+stubrunner:
+  username: ${SELI_ARTIFACTORY_REPO_USER}
+  password: ${SELI_ARTIFACTORY_REPO_PASS}
+
+client:
+  retries:
+    apiRetries: 3
+    serverErrorWaitMs: 5000
+    serverErrorMaxWaitMs: 30000
+  auth-refresh-period: ${AUTH_REFRESH_PERIOD:1200}
+  cts:
+    base-path: "https://th.stsvp1eic27.stsoss.sero.gic.ericsson.se/oss-core-ws/rest"
+    login:
+      username: ${CTS_USERNAME}
+      password: ${CTS_PASSWORD}
+  ncmp:
+    base-path: "https://th.stsvp1eic27.stsoss.sero.gic.ericsson.se"
+    login:
+      username: ${NCMP_USERNAME}
+      password: ${NCMP_PASSWORD}
+app:
+  local: false
+  data:
+    timewarp: 0
+    customerid: "netsim001"
+    gNBIdLength: 24
+    pm:
+      rop:
+        path: "pm/rop/"
+        retentionRops: 7
+        longSlidingWindowRops: 8
+        shortSlidingWindowRops: 2
+        lastSeenWindowRops: 2
+        minRopCountForDetection: 4
+        minValidMaxDeltaIpnSteps: 600
+        minValidSymbolDeltaIpnSteps: 120000
+        otherInterferencePercThreshold: 50
+        mixedInterferencePercThreshold: 70
+        # throughput may respond to the new deltaipn counter at a different level compared to maxdeltaipn.
+        # If that is the case, we can scale it up (or down) and use the same thresholds
+        pmSWAvgSymbolDeltaIPNScalingFactor: 1
+        scheduler:
+          cron: "0 5,20,35,50 * 30 2 *" # 30 Feb , effectively disable
+        kafka:
+          cron: "0 10,25,40,55 * * * *" # Parsers produce data 5 min after ROPS, RIM kafka finished reading data at 7 min after the ROP. This runs featureCalculator.
+        csv:
+          usePreCalculatedAvgDeltaIpN: false
+    allow-list:
+      allow-all-fdn: false
+    netsim: false
+
+bdr:
+  service: http://localhost:9000
+  accesskey: ${BDR_ACCESSKEY:minioadmin}
+  secretkey: ${BDR_SECRETKEY:minioadmin}
+  bucket: rim
+
+tropoduct:
+  loadFromUrl: true
+  baseUrlAndPath: https://tropo.f5len.org/WW/images
+  retryUrlTimes: 2
+  backoffRetryUrlMilliSeconds: 1000
+  forecastRopMinutes: 180
+  forecastAdvanceMinutes: 120
+  ductStrengthRanges:
+    - 35
+    - 43
+    - 55
+    - 65
+    - 75
+    - 95
+    - 110
+    - 150
+  minDetectedDuctStrength: 30
+  maxLon: -87
+  maxLat: 36
+  minLon: -79
+  minLat: 30.5
+  minAvgDeltaIpn: 2
+  maxDetectedCells: 5000
+
+clustering:
+  minimumConnectedEdgeWeight: 5
+  minimumVictimScore: 5
+  minimumConnectedComponentSize: 1
+  aggressor-score-weights:
+    azimuthAffinity: 1
+    pmRadioMaxDeltaIpNAvgC2: 1
+    distance: 1
+    dlRBSymUtilC1: 1
+    tddOverlap: 1
+    frequencyOverlap: 2
+    ductStrength: 3
+#see 3GPP TS 38.104 chapter 5.4.2.1 "https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3202"
+  arfcn-ranges:
+    -
+      minNRef: 0
+      maxNRef: 599999
+      deltaFGlobalKhz: 5
+      fREFOffsMHz: 0
+    -
+      minNRef: 600000
+      maxNRef: 2016666
+      deltaFGlobalKhz: 5
+      fREFOffsMHz: 3000
+    -
+      minNRef: 2016667
+      maxNRef: 3279167
+      deltaFGlobalKhz: 60
+      fREFOffsMHz: 24250
+
+
+mitigation:
+  observationWindowMs: 3600000
+  cell-individual-offset:
+    stepSize: 4
+    maxAbsoluteValue: 24
+    maxSteps: 5
+  p-zero-nom-pusch-grant-db:
+    stepSize: 4
+    maxAbsoluteValue: 24
+    maxSteps: 5
+  p-zero-ue-pusch-offset-256-qam-db:
+    stepSize: 4
+    maxAbsoluteValue: 15
+    maxSteps: 5
+  closeLoopMode: false
+  emergencyMode: false
+
+cell-selection-config:
+  use-weather-data: true
+  maxDeltaIPNThresholdDb: 1
+  minRemoteInterferenceVictimCellDb: 2
+  maxRemoteInterferenceNeighborCellDb: 1
+  maxRankSelectBestNeighborCells: 5
+  acceptHandoversAboveHoPercent: 95.0
+  p0RejectNumberHandoversBelowValue: 1
+  cioAcceptTopRankedValue: 6
+  cioRejectNumberHandoversBelowValue: 1
+  cioRejectVictimBandwidthRatio: 0
+
+reporting :
+  maxNumberRecordsPerOutputFile: 100000
+
+threading:
+  poolSizeForCtsGeoQuery: 8
+  poolSizeForNcmpCmQuery: 4
+  poolSizeForULPowerMitigation: 4
+  poolSizeForCIOMitigation: 4
+  poolSizeForRelationSyncQuery: 4
+

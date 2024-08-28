@@ -1,0 +1,327 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+getResourceDataForPassthroughOperational:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data from pass-through operational for cm handle
+    description: Get resource data from pass-through operational for given cm handle
+    operationId: getResourceDataOperationalForCmHandle
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/topicParamInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'eric-oss-ncmp-components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadGateway'
+
+resourceDataForPassthroughRunning:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data from pass-through running for cm handle
+    description: Get resource data from pass-through running for given cm handle
+    operationId: getResourceDataRunningForCmHandle
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/topicParamInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'eric-oss-ncmp-components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadGateway'
+  post:
+    tags:
+      - network-cm-proxy
+    summary: create resource data from pass-through running for cm handle
+    description: create resource data from pass-through running for given cm handle
+    operationId: createResourceDataRunningForCmHandle
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/contentParamInHeader'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'eric-oss-ncmp-components.yaml#/components/examples/dataSampleRequest'
+        application/yang-data+json:
+          schema:
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'eric-oss-ncmp-components.yaml#/components/examples/dataSampleRequest'
+    responses:
+      201:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Created'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadGateway'
+
+  put:
+    tags:
+      - network-cm-proxy
+    summary: Update resource data from pass-through running for a cm handle
+    description: Update resource data from pass-through running for the given cm handle
+    operationId: updateResourceDataRunningForCmHandle
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/contentParamInHeader'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'eric-oss-ncmp-components.yaml#/components/examples/dataSampleRequest'
+        application/yang-data+json:
+          schema:
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'eric-oss-ncmp-components.yaml#/components/examples/dataSampleRequest'
+    responses:
+      200:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadGateway'
+
+  patch:
+    tags:
+      - network-cm-proxy
+    summary: Patch resource data from pass-through running
+    description: Patch resource data from pass-through running for the given cm handle
+    operationId: patchResourceDataRunningForCmHandle
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/contentParamInHeader'
+    requestBody:
+      required: true
+      content:
+        '*/*':
+          schema:
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'eric-oss-ncmp-components.yaml#/components/examples/dataSamplePatchRequest'
+    responses:
+      200:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadGateway'
+
+  delete:
+    tags:
+      - network-cm-proxy
+    summary: Delete resource data
+    description: Delete resource data from pass-through running for a given cm handle
+    operationId: deleteResourceDataRunningForCmHandle
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/contentParamInHeader'
+    responses:
+      204:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/NoContent'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadGateway'
+
+fetchModuleReferencesByCmHandle:
+  get:
+    description: fetch all module references (name and revision) for a given cm handle
+    tags:
+      - network-cm-proxy
+    summary: Fetch all module references (name and revision) for a given cm handle
+    operationId: getModuleReferencesByCmHandle
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: 'eric-oss-ncmp-components.yaml#/components/schemas/RestModuleReference'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+
+executeCmHandleSearch:
+  post:
+    description: Execute cm handle searches using 'hasAllModules' condition to get all cm handles for the given module names
+    tags:
+      - network-cm-proxy
+    summary: Execute cm handle search using the available conditions
+    operationId: executeCmHandleSearch
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'eric-oss-ncmp-components.yaml#/components/schemas/Conditions'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'eric-oss-ncmp-components.yaml#/components/schemas/CmHandles'
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+
+retrieveCmHandleDetailsById:
+  get:
+    description: Retrieve CM handle details and properties by cm handle id
+    tags:
+      - network-cm-proxy
+    summary: Retrieve CM handle details
+    operationId: retrieveCmHandleDetailsById
+    parameters:
+      - $ref: 'eric-oss-ncmp-components.yaml#/components/parameters/cmHandleInPath'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'eric-oss-ncmp-components.yaml#/components/schemas/RestOutputCmHandle'
+      404:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'
+
+queryCmHandles:
+  post:
+    description: Execute cm handle query search
+    tags:
+      - network-cm-proxy
+    summary: Execute cm handle query upon a given set of query parameters
+    operationId: queryCmHandles
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'eric-oss-ncmp-components.yaml#/components/schemas/CmHandleQueryRestParameters'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      400:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'eric-oss-ncmp-components.yaml#/components/responses/InternalServerError'

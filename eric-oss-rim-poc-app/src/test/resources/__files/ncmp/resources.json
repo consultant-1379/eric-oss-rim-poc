@@ -1,0 +1,645 @@
+{
+  "ericsson-enm:ManagedElement": [
+    {
+      "id": "NR03gNodeBRadio00002",
+      "attributes": {
+        "dnPrefix": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002",
+        "userLabel": "null",
+        "locationName": "null",
+        "swVersion": "null",
+        "managedElementType": "RadioNode",
+        "userDefinedState": "null",
+        "managedElementId": "NR03gNodeBRadio00002",
+        "release": "21.Q4",
+        "platformType": "null",
+        "logicalName": "null",
+        "vendorName": "null",
+        "networkManagedElementId": "null",
+        "siteLocation": ";Dublin3",
+        "neType": "RadioNode",
+        "managedElementTypeList": "null"
+      },
+      "ericsson-enm:GNBCUCPFunction": [
+        {
+          "id": "1",
+          "attributes": {
+            "gNBId": "1",
+            "gNBIdLength": "22",
+            "pLMNId": {
+              "mcc": 216,
+              "mnc": 30
+            }
+          },
+          "ericsson-enm:NRNetwork": [
+            {
+              "id": "1",
+              "ericsson-enm:NRFrequency": [
+                {
+                  "id": "1",
+                  "attributes": {
+                    "nRFrequencyId": "1",
+                    "arfcnValueNRDl": "10"
+                  }
+                },
+                {
+                  "id": "2",
+                  "attributes": {
+                    "nRFrequencyId": "2",
+                    "arfcnValueNRDl": "10"
+                  }
+                }
+              ]
+            }
+          ],
+          "ericsson-enm:NRCellCU": [
+            {
+              "id": "NR03gNodeBRadio00002-1",
+              "attributes": {
+                "nRCellCUId": "NR03gNodeBRadio00002-1",
+                "nRFrequencyRef": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,GNBCUCPFunction=1,NRNetwork=1,NRFrequency=1"
+              },
+              "ericsson-enm:NRCellRelation": [
+                {
+                  "id": "1",
+                  "attributes": {
+                    "nRCellRelationId": "1",
+                    "cellIndividualOffsetNR": "7",
+                    "nRFreqRelationRef": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,GNBCUCPFunction=1,NRCellCU=NR03gNodeBRadio00002-1,NRFreqRelation=1",
+                    "nRCellRef": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,GNBCUCPFunction=1,NRCellCU=NR03gNodeBRadio00002-2"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "ericsson-enm:GNBDUFunction": [
+        {
+          "id": "1",
+          "attributes": {
+            "gNBId": "1",
+            "gNBIdLength": "22",
+            "pLMNId": {
+              "mcc": 216,
+              "mnc": 30
+            }
+          },
+          "ericsson-enm:NRSectorCarrier": [
+            {
+              "id": "1",
+              "attributes": {
+                "altitude": "null",
+                "noOfTxAntennas": "4",
+                "sectorEquipmentFunctionRef": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,NodeSupport=1,SectorEquipmentFunction=1",
+                "powerMeasAvgTime": "null",
+                "arfcnUL": "0",
+                "latitude": "null",
+                "noOfUsedTxAntennas": "null",
+                "essScLocalId": "null",
+                "nRSectorCarrierId": "1",
+                "rfBranchTxRef": "null",
+                "txPowerPersistentLock": "false",
+                "administrativeState": "UNLOCKED",
+                "arfcnDL": "2076665",
+                "txPowerChangeRate": "1",
+                "availabilityStatus": "null",
+                "scaledTransmissionPower": "null",
+                "ulCalibrationData": {
+                  "ulCalibrationActiveMethod": "NONE",
+                  "ulCalibrationStatus": "INACTIVE",
+                  "ulCalibrationSupportedMethods": "null"
+                },
+                "longitude": "null",
+                "coverage": {
+                  "radius": "1",
+                  "openingAngle": "0",
+                  "bearing": "0"
+                },
+                "rfBranchRxRef": "null",
+                "nullSteeringMode": "ALL",
+                "frequencyDL": "null",
+                "frameStartOffset": "0",
+                "essScPairId": "null",
+                "bSChannelBwUL": "0",
+                "radioTransmitPerfMode": "COVERAGE",
+                "txPowerRatio": "100",
+                "configuredMaxTxPower": "10000",
+                "azimuthNull": [
+                  {
+                    "horizontalAngle": "null",
+                    "verticalAngle": "null",
+                    "nullWidth": "null",
+                    "frequency": "null"
+                  }
+                ],
+                "dlCalibrationData": {
+                  "dlCalibrationSupportedMethods": "null",
+                  "dlCalibrationActiveMethod": "NONE",
+                  "dlCalibrationStatus": "INACTIVE"
+                },
+                "noOfUsedRxAntennas": "null",
+                "frequencyUL": "null",
+                "polygon": [
+                  {
+                    "latitude": "null",
+                    "longitude": "null"
+                  }
+                ],
+                "bSChannelBwDL": "0",
+                "cbrsEnabled": "true",
+                "noOfRxAntennas": "4",
+                "reservedBy": [
+                  "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,GNBDUFunction=1,NRCellDU=NR03gNodeBRadio00002-1"
+                ],
+                "operationalState": "ENABLED",
+                "txDirection": "DL_AND_UL",
+                "elevationNull": [
+                  {
+                    "verticalAngle": "null",
+                    "nullWidth": "null",
+                    "frequency": "null"
+                  }
+                ],
+                "maxTransmissionPower": "null"
+              }
+            },
+            {
+              "id": "2",
+              "attributes": {
+                "altitude": "10",
+                "noOfTxAntennas": "4",
+                "sectorEquipmentFunctionRef": "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,NodeSupport=1,SectorEquipmentFunction=1",
+                "powerMeasAvgTime": "null",
+                "arfcnUL": "0",
+                "latitude": "null",
+                "noOfUsedTxAntennas": "null",
+                "essScLocalId": "null",
+                "nRSectorCarrierId": "2",
+                "rfBranchTxRef": "null",
+                "txPowerPersistentLock": "false",
+                "administrativeState": "UNLOCKED",
+                "arfcnDL": "2076665",
+                "txPowerChangeRate": "1",
+                "availabilityStatus": "null",
+                "scaledTransmissionPower": "null",
+                "ulCalibrationData": {
+                  "ulCalibrationActiveMethod": "NONE",
+                  "ulCalibrationStatus": "INACTIVE",
+                  "ulCalibrationSupportedMethods": "null"
+                },
+                "longitude": "null",
+                "coverage": {
+                  "radius": "1",
+                  "openingAngle": "0",
+                  "bearing": "0"
+                },
+                "rfBranchRxRef": "null",
+                "nullSteeringMode": "ALL",
+                "frequencyDL": "null",
+                "frameStartOffset": "0",
+                "essScPairId": "null",
+                "bSChannelBwUL": "0",
+                "radioTransmitPerfMode": "COVERAGE",
+                "txPowerRatio": "100",
+                "configuredMaxTxPower": "10000",
+                "azimuthNull": [
+                  {
+                    "horizontalAngle": "null",
+                    "verticalAngle": "null",
+                    "nullWidth": "null",
+                    "frequency": "null"
+                  }
+                ],
+                "dlCalibrationData": {
+                  "dlCalibrationSupportedMethods": "null",
+                  "dlCalibrationActiveMethod": "NONE",
+                  "dlCalibrationStatus": "INACTIVE"
+                },
+                "noOfUsedRxAntennas": "null",
+                "frequencyUL": "null",
+                "polygon": [
+                  {
+                    "latitude": "null",
+                    "longitude": "null"
+                  }
+                ],
+                "bSChannelBwDL": "0",
+                "cbrsEnabled": "true",
+                "noOfRxAntennas": "4",
+                "reservedBy": [
+                  "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,GNBDUFunction=1,NRCellDU=NR03gNodeBRadio00002-2"
+                ],
+                "operationalState": "ENABLED",
+                "txDirection": "DL_AND_UL",
+                "elevationNull": [
+                  {
+                    "verticalAngle": "null",
+                    "nullWidth": "null",
+                    "frequency": "null"
+                  }
+                ],
+                "maxTransmissionPower": "null"
+              }
+            }
+          ],
+          "ericsson-enm:NRCellDU": [
+            {
+              "id": "NR03gNodeBRadio00002-1",
+              "attributes": {
+                "typeISinglePanelRiRestriction": "15",
+                "dftSOfdmPuschStartRsrpThresh": "-104",
+                "ulAvailableCrbs": "null",
+                "ailgDlPrbLoadLevel": "0",
+                "drxOnDurationTimer": "ONDURATIONTIMER_8MS",
+                "trsResourceShifting": "DEACTIVATED",
+                "ulStartCrb": "0",
+                "endcDlNrQualHyst": "8",
+                "trsConfigMode": "AUTO",
+                "serviceState": "null",
+                "sfnOffset": "0",
+                "cellBarred": "NOT_BARRED",
+                "sNSSAIList": [
+                  {
+                    "sd": "null",
+                    "sst": "null"
+                  }
+                ],
+                "imsEmSupportEnabled": "false",
+                "networkSignalValue": "0",
+                "drxInactivityTimer": "INACTIVITYTIMER_8MS",
+                "maxUsersRachSchedPusch": "100",
+                "cellReservedForOperator": "NOT_RESERVED",
+                "ulRobustLaEnabled": "false",
+                "nRCellDUId": "NR03gNodeBRadio00002-1",
+                "drxEnable": "true",
+                "dlRobustLaEnabled": "false",
+                "nrRrpEnabled": "false",
+                "pointAArfcnTdd": "null",
+                "nrLteCoexistence": "false",
+                "cbrsCellPriorityRank": "1",
+                "pZeroNomPuschGrant": "-54",
+                "operationalState": "DISABLED",
+                "pwsBroadcastOngoing": "null",
+                "endcUlNrLowQualThresh": "17",
+                "tddBorderVersion": "DISABLED",
+                "dlAvailableCrbs": "null",
+                "tddUlDlPattern": "TDD_ULDL_PATTERN_00",
+                "rachPreambleTransMax": "10",
+                "csiRsConfig4P": {
+                  "i11Restriction": "FF",
+                  "csiRsControl4Ports": "TWO_ONE"
+                },
+                "ssbFrequencyAutoSelected": "null",
+                "ssbGscn": "null",
+                "cbrsCellSsbControlEnabled": "false",
+                "nbIotCellDeployed": "false",
+                "pdschStartPrbStrategy": "RANDOM_START_WITHIN_BAND",
+                "endcDlNrLowQualThresh": "-8",
+                "nCI": "1343813",
+                "ssbDurationAutoSelected": "null",
+                "pointAFrequencyTdd": "null",
+                "bfrEnabled": "false",
+                "dlStartCrb": "0",
+                "csiReportFormat": "CQI_WB_PMI_WB",
+                "rachPreambleRecTargetPower": "-110",
+                "cellResourceMappingRef": "null",
+                "sibType2": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "trsPeriodicity": "20",
+                "csiRsShiftingSecondary": "DEACTIVATED",
+                "ulMaxMuMimoLayers": "0",
+                "nRTAC": "999",
+                "sibType4": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "ssbOffsetAutoSelected": "null",
+                "sibType5": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "ul256QamEnabled": "false",
+                "pointAFrequencyUlFdd": "null",
+                "dftSOfdmPuschEnabled": "false",
+                "csiRsConfig32P": {
+                  "i11Restriction": "",
+                  "i12Restriction": "",
+                  "csiRsControl32Ports": "OFF"
+                },
+                "caSCellHandlingRef": "null",
+                "csiRsConfig16P": {
+                  "i11Restriction": "",
+                  "i12Restriction": "",
+                  "csiRsControl16Ports": "OFF"
+                },
+                "drxLongCycle": "LONGCYCLE_80MS",
+                "dlChannelScramblingIdentity": "PCI",
+                "puschAllowedInDmrsSym": "false",
+                "sibType6": {
+                  "siPeriodicity": "16",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "sibType7": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "dl256QamEnabled": "true",
+                "sibType8": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "pointAArfcnUlFdd": "null",
+                "cbrsCellCaOffsetControl": "AUTO",
+                "endcUlNrQualHyst": "6",
+                "pZeroNomSrs": "-110",
+                "qRxLevMinOffset": "null",
+                "trsModeSelected": "null",
+                "cellLocalId": "325",
+                "pdschAllowedInDmrsSym": "false",
+                "csiRsConfig2P": {
+                  "csiRsControl2Ports": "ON",
+                  "aRestriction": "3F"
+                },
+                "ssbSubCarrierSpacing": "120",
+                "cellRange": "null",
+                "essMbsfnSubframeConfig": "12584960",
+                "ssbOffset": "null",
+                "administrativeState": "UNLOCKED",
+                "ssbFrequency": "0",
+                "csiRsShiftingPrimary": "DEACTIVATED",
+                "endcUlLegSwitchEnabled": "false",
+                "bandListManual": "null",
+                "pdcchLaSinrOffset": "-15",
+                "siWindowLength": "20",
+                "nRSectorCarrierRef": [
+                  "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,GNBDUFunction=1,NRSectorCarrier=1"
+                ],
+                "covOptUlSchedFr2Enabled": "false",
+                "pZeroNomPucch": "-114",
+                "rachPreambleFormat": "null",
+                "additionalPucchForCaEnabled": "false",
+                "nRPCI": "720",
+                "ailgModType": "AILG_MOD_QPSK",
+                "dlMaxMuMimoLayers": "0",
+                "qQualMinOffset": "null",
+                "secondaryCellOnly": "true",
+                "cbrsCellBandwidthPreferred": "20000",
+                "dlDmrsMuxSinrThresh": "-10",
+                "drxProfileEnabled": "false",
+                "bandList": "null",
+                "ueBbProfileRef": "null",
+                "pLMNIdList": [
+                  {
+                    "mcc": "128",
+                    "mnc": "49"
+                  },
+                  {
+                    "mcc": "129",
+                    "mnc": "50"
+                  },
+                  {
+                    "mcc": "130",
+                    "mnc": "51"
+                  }
+                ],
+                "puschStartPrbStrategy": "RANDOM_START_WITHIN_BAND",
+                "ssbDuration": "null",
+                "qQualMin": "null",
+                "advancedDlSuMimoEnabled": "false",
+                "subCarrierSpacing": "120",
+                "userLabel": "cmsync_abc",
+                "maxUeSpeed": "null",
+                "tddSpecialSlotPattern": "TDD_SPECIAL_SLOT_PATTERN_00",
+                "csiRsConfig8P": {
+                  "csiRsControl8Ports": "FOUR_ONE_N1AZ",
+                  "i11Restriction": "FFFF",
+                  "i12Restriction": ""
+                },
+                "cellState": "null",
+                "pointAFrequencyDlFdd": "null",
+                "trsPowerBoosting": "0",
+                "csiRsPeriodicity": "40",
+                "endcDlLegSwitchEnabled": "true",
+                "availabilityStatus": "null",
+                "cbrsCellPriority": "NORMAL",
+                "qRxLevMin": "-140",
+                "csiRsActivePortConfig": "null",
+                "pMax": "23",
+                "pointAArfcnDlFdd": "null",
+                "dftSOfdmMsg3Enabled": "false",
+                "drxProfileRef": "null",
+                "ssbPeriodicity": "20",
+                "ailgPdcchLoadLevel": "0",
+                "srsPeriodicity": "40",
+                "pZeroUePuschOffset256Qam": "0",
+                "configuredEpsTAC": "null",
+                "ssbPowerBoost": "0",
+                "actualSsbPowerBoost": "null",
+                "rachRootSequence": "1"
+              }
+            },
+            {
+              "id": "NR03gNodeBRadio00002-2",
+              "attributes": {
+                "typeISinglePanelRiRestriction": "15",
+                "dftSOfdmPuschStartRsrpThresh": "-104",
+                "ulAvailableCrbs": "null",
+                "ailgDlPrbLoadLevel": "0",
+                "drxOnDurationTimer": "ONDURATIONTIMER_8MS",
+                "trsResourceShifting": "DEACTIVATED",
+                "ulStartCrb": "0",
+                "endcDlNrQualHyst": "8",
+                "trsConfigMode": "AUTO",
+                "serviceState": "null",
+                "sfnOffset": "0",
+                "cellBarred": "NOT_BARRED",
+                "sNSSAIList": [
+                  {
+                    "sd": "null",
+                    "sst": "null"
+                  }
+                ],
+                "imsEmSupportEnabled": "false",
+                "networkSignalValue": "0",
+                "drxInactivityTimer": "INACTIVITYTIMER_8MS",
+                "maxUsersRachSchedPusch": "100",
+                "cellReservedForOperator": "NOT_RESERVED",
+                "ulRobustLaEnabled": "false",
+                "nRCellDUId": "NR03gNodeBRadio00002-2",
+                "drxEnable": "true",
+                "dlRobustLaEnabled": "false",
+                "nrRrpEnabled": "false",
+                "pointAArfcnTdd": "null",
+                "nrLteCoexistence": "false",
+                "cbrsCellPriorityRank": "1",
+                "pZeroNomPuschGrant": "-100",
+                "operationalState": "DISABLED",
+                "pwsBroadcastOngoing": "null",
+                "endcUlNrLowQualThresh": "17",
+                "tddBorderVersion": "DISABLED",
+                "dlAvailableCrbs": "null",
+                "tddUlDlPattern": "TDD_ULDL_PATTERN_00",
+                "rachPreambleTransMax": "10",
+                "csiRsConfig4P": {
+                  "i11Restriction": "FF",
+                  "csiRsControl4Ports": "TWO_ONE"
+                },
+                "ssbFrequencyAutoSelected": "null",
+                "ssbGscn": "null",
+                "cbrsCellSsbControlEnabled": "false",
+                "nbIotCellDeployed": "false",
+                "pdschStartPrbStrategy": "RANDOM_START_WITHIN_BAND",
+                "endcDlNrLowQualThresh": "-8",
+                "nCI": "1343814",
+                "ssbDurationAutoSelected": "null",
+                "pointAFrequencyTdd": "null",
+                "bfrEnabled": "false",
+                "dlStartCrb": "0",
+                "csiReportFormat": "CQI_WB_PMI_WB",
+                "rachPreambleRecTargetPower": "-110",
+                "cellResourceMappingRef": "null",
+                "sibType2": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "trsPeriodicity": "20",
+                "csiRsShiftingSecondary": "DEACTIVATED",
+                "ulMaxMuMimoLayers": "0",
+                "nRTAC": "999",
+                "sibType4": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "ssbOffsetAutoSelected": "null",
+                "sibType5": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "ul256QamEnabled": "false",
+                "pointAFrequencyUlFdd": "null",
+                "dftSOfdmPuschEnabled": "false",
+                "csiRsConfig32P": {
+                  "i11Restriction": "",
+                  "i12Restriction": "",
+                  "csiRsControl32Ports": "OFF"
+                },
+                "caSCellHandlingRef": "null",
+                "csiRsConfig16P": {
+                  "i11Restriction": "",
+                  "i12Restriction": "",
+                  "csiRsControl16Ports": "OFF"
+                },
+                "drxLongCycle": "LONGCYCLE_80MS",
+                "dlChannelScramblingIdentity": "PCI",
+                "puschAllowedInDmrsSym": "false",
+                "sibType6": {
+                  "siPeriodicity": "16",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "sibType7": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "dl256QamEnabled": "true",
+                "sibType8": {
+                  "siPeriodicity": "64",
+                  "siBroadcastStatus": "BROADCASTING"
+                },
+                "pointAArfcnUlFdd": "null",
+                "cbrsCellCaOffsetControl": "AUTO",
+                "endcUlNrQualHyst": "1",
+                "pZeroNomSrs": "-110",
+                "qRxLevMinOffset": "null",
+                "trsModeSelected": "null",
+                "cellLocalId": "326",
+                "pdschAllowedInDmrsSym": "false",
+                "csiRsConfig2P": {
+                  "csiRsControl2Ports": "ON",
+                  "aRestriction": "3F"
+                },
+                "ssbSubCarrierSpacing": "120",
+                "cellRange": "null",
+                "essMbsfnSubframeConfig": "12584960",
+                "ssbOffset": "null",
+                "administrativeState": "UNLOCKED",
+                "ssbFrequency": "0",
+                "csiRsShiftingPrimary": "DEACTIVATED",
+                "endcUlLegSwitchEnabled": "false",
+                "bandListManual": "null",
+                "pdcchLaSinrOffset": "-15",
+                "siWindowLength": "20",
+                "nRSectorCarrierRef": [
+                  "SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR03gNodeBRadio00002,ManagedElement=NR03gNodeBRadio00002,GNBDUFunction=1,NRSectorCarrier=2"
+                ],
+                "covOptUlSchedFr2Enabled": "false",
+                "pZeroNomPucch": "-114",
+                "rachPreambleFormat": "null",
+                "additionalPucchForCaEnabled": "false",
+                "nRPCI": "186",
+                "ailgModType": "AILG_MOD_QPSK",
+                "dlMaxMuMimoLayers": "0",
+                "qQualMinOffset": "null",
+                "secondaryCellOnly": "true",
+                "cbrsCellBandwidthPreferred": "20000",
+                "dlDmrsMuxSinrThresh": "-10",
+                "drxProfileEnabled": "false",
+                "bandList": "null",
+                "ueBbProfileRef": "null",
+                "pLMNIdList": [
+                  {
+                    "mcc": "128",
+                    "mnc": "49"
+                  },
+                  {
+                    "mcc": "129",
+                    "mnc": "50"
+                  },
+                  {
+                    "mcc": "130",
+                    "mnc": "51"
+                  }
+                ],
+                "puschStartPrbStrategy": "RANDOM_START_WITHIN_BAND",
+                "ssbDuration": "null",
+                "qQualMin": "null",
+                "advancedDlSuMimoEnabled": "false",
+                "subCarrierSpacing": "120",
+                "userLabel": "null",
+                "maxUeSpeed": "null",
+                "tddSpecialSlotPattern": "TDD_SPECIAL_SLOT_PATTERN_00",
+                "csiRsConfig8P": {
+                  "csiRsControl8Ports": "FOUR_ONE_N1AZ",
+                  "i11Restriction": "FFFF",
+                  "i12Restriction": ""
+                },
+                "cellState": "null",
+                "pointAFrequencyDlFdd": "null",
+                "trsPowerBoosting": "0",
+                "csiRsPeriodicity": "40",
+                "endcDlLegSwitchEnabled": "true",
+                "availabilityStatus": "null",
+                "cbrsCellPriority": "NORMAL",
+                "qRxLevMin": "-140",
+                "csiRsActivePortConfig": "null",
+                "pMax": "23",
+                "pointAArfcnDlFdd": "null",
+                "dftSOfdmMsg3Enabled": "false",
+                "drxProfileRef": "null",
+                "ssbPeriodicity": "20",
+                "ailgPdcchLoadLevel": "0",
+                "srsPeriodicity": "40",
+                "pZeroUePuschOffset256Qam": "0",
+                "configuredEpsTAC": "null",
+                "ssbPowerBoost": "0",
+                "actualSsbPowerBoost": "null",
+                "rachRootSequence": "1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+client:
+  cts:
+    basePath: "th.dummy.host"
+    login:
+      username: cts-user
+      password: cts-pwd
+  ncmp:
+    basePath: "th.dummy.host"
+    login:
+      username: cts-user
+      password: cts-pwd
+
+spring:
+  kafka:
+    topics:
+      input:
+        name: "eric-oss-3gpp-pm-xml-ran-parser-nr"
+    bootstrapServers: eric-oss-dmm-kf-op-sz-kafka-bootstrap:9092
+    schemaRegistry:
+      url: http://eric-schema-registry-sr:8081
+
+tropoduct:
+  loadFromUrl: true
+  baseUrlAndPath: https://tropo.f5len.org/WW/images
+

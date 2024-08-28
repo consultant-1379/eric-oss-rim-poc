@@ -1,0 +1,399 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+openapi: "3.0.2"
+info:
+  title: "CTS Client"
+  version: "1.0.0"
+  description: "Common Topology Service  Interface"
+  license:
+    name: "COPYRIGHT Ericsson 2021"
+    url: "https://www.ericsson.com/en/legal"
+
+tags:
+  - name: "CtsClient"
+    description: "Tag for client functionalities"
+
+paths:
+  /osl-adv/datasync/process:
+    post:
+      tags:
+        - "CtsClient"
+      summary: "Sync Data"
+      operationId: "syncData"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          $ref: '#/components/responses/BadRequest'
+  /ctw/{wireless-topology}:
+    get:
+      tags:
+        - "CtsClient"
+      summary: "Query Topology Objects"
+      operationId: "queryTopologyObjects"
+      parameters:
+        - name: wireless-topology
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/WirelessTopology'
+        - name: params
+          in: query
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        "400":
+          $ref: '#/components/responses/BadRequest'
+  /ctw/nrcell:
+    get:
+      tags:
+        - "CtsClient"
+      summary: "Query NrCells"
+      operationId: "queryNrCells"
+      parameters:
+        - name: params
+          in: query
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NrCell'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+  /ctw/nrcell/{id}:
+    get:
+      tags:
+        - "CtsClient"
+      summary: "Query NrCell"
+      operationId: "queryNrCell"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: params
+          in: query
+          schema:
+            type: string
+            additionalProperties:
+              type: string
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NrCell'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+
+components:
+  schemas:
+    WirelessTopology:
+      type: string
+      default: "nrcell"
+      enum:
+        - "nrcell"
+        - "gnbdu"
+        - "gnbcucp"
+        - "nrsectorcarrier"
+        - "wirelessnetwork"
+        - "antennamodule"
+    Resource:
+      type: object
+      required:
+        - type
+        - id
+        - href
+      properties:
+        type:
+          type: string
+        id:
+          type: integer
+          format: int64
+        href:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        comments:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          ctw/antennamodule: '#/components/schemas/AntennaModule'
+          ctw/gnbdu: '#/components/schemas/Gnbdu'
+          ctw/nrcell: '#/components/schemas/NrCell'
+          ctw/nrsectorcarrier: '#/components/schemas/NrSectorCarrier'
+          ctw/wirelessnetwork: '#/components/schemas/WirelessNetwork'
+          ctg/geographicsite: '#/components/schemas/GeographicSite'
+          ctg/geographiclocation: '#/components/schemas/GeographicLocation'
+    Association:
+      type: object
+      required:
+        - mode
+        - value
+      properties:
+        mode:
+          type: string
+          default: 'NOT_LOADED'
+        value:
+          $ref: '#/components/schemas/Resource'
+    AntennaModule:
+      allOf:
+        - $ref: '#/components/schemas/Resource'
+        - type: object
+          properties:
+            minTotalTilt:
+              type: integer
+              format: int32
+            maxTotalTilt:
+              type: integer
+              format: int32
+            minAzimuthValue:
+              type: integer
+              format: int32
+            maxAzimuthValue:
+              type: integer
+              format: int32
+            geographicLocation:
+              type: array
+              maxItems: 1
+              items:
+                $ref: '#/components/schemas/Association'
+    Gnbdu:
+      allOf:
+        - $ref: '#/components/schemas/Resource'
+        - type: object
+          required:
+            - gnbduId
+          properties:
+            gnbduId:
+              type: integer
+              format: int64
+            geographicSite:
+              type: array
+              maxItems: 1
+              items:
+                $ref: '#/components/schemas/Association'
+            nrCells:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+            nrSectorCarriers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+            wirelessNetworks:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+    NrCell:
+      allOf:
+        - $ref: '#/components/schemas/Resource'
+        - type: object
+          properties:
+            localCellIdNci:
+              type: integer
+              format: int64
+            physicalCellIdentity:
+              type: integer
+              format: int32
+            trackingAreaCode:
+              type: integer
+              format: int32
+            geographicSite:
+              type: array
+              maxItems: 1
+              items:
+                $ref: '#/components/schemas/Association'
+            gnbdu:
+              type: array
+              maxItems: 1
+              items:
+                $ref: '#/components/schemas/Association'
+            nrSectorCarriers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+            wirelessNetworks:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+    NrSectorCarrier:
+      allOf:
+        - $ref: '#/components/schemas/Resource'
+        - type: object
+          properties:
+            arfcnDL:
+              type: integer
+              format: int32
+            arfcnUL:
+              type: integer
+              format: int32
+            bSChannelBwDL:
+              type: integer
+              format: int32
+            bSChannelBwUL:
+              type: integer
+              format: int32
+            configuredMaxTxEIRP:
+              type: integer
+              format: int32
+            configuredMaxTxPower:
+              type: integer
+              format: int32
+            txDirection:
+              type: string
+            gnbdu:
+              type: array
+              maxItems: 1
+              items:
+                $ref: '#/components/schemas/Association'
+            nrCell:
+              type: array
+              maxItems: 1
+              items:
+                $ref: '#/components/schemas/Association'
+    WirelessNetwork:
+      allOf:
+        - $ref: '#/components/schemas/Resource'
+        - type: object
+          required:
+            - mcc
+            - mnc
+          properties:
+            mcc:
+              type: integer
+              format: int32
+            mnc:
+              type: integer
+              format: int32
+            nrCells:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+    GeographicSite:
+      allOf:
+        - $ref: '#/components/schemas/Resource'
+        - type: object
+          properties:
+            siteId:
+              type: string
+            locatedAt:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+    GeographicLocation:
+      allOf:
+        - $ref: '#/components/schemas/Resource'
+        - type: object
+          properties:
+            geospatialData:
+              $ref: '#/components/schemas/GeospatialData'
+            antennaModules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Association'
+            situatedSite:
+              type: array
+              maxItems: 1
+              items:
+                $ref: '#/components/schemas/Association'
+    GeospatialData:
+      type: object
+      properties:
+        type:
+          type: string
+        coordinates:
+          type: array
+          minItems: 2
+          maxItems: 3
+          items:
+            type: number
+            format: float
+    GraniteFault:
+      type: object
+      properties:
+        exceptionClassName:
+          type: string
+        messageCode:
+          type: string
+        messageText:
+          type: string
+        messageDetails:
+          $ref: '#/components/schemas/StructuredData'
+        uiPresentable:
+          type: boolean
+        severity:
+          type: string
+          enum:
+            - ERROR
+            - WARNING
+    GraniteFaultStack:
+      type: object
+      properties:
+        messageText:
+          type: string
+        faults:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraniteFault'
+    StructuredData:
+      type: object
+      properties:
+        any:
+          type: object
+
+  responses:
+    BadRequest:
+      description: "BAD REQUEST"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GraniteFaultStack'

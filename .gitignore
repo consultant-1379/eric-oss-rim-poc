@@ -1,0 +1,55 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+tmp/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+### BOB Temporary Files/Folders ###
+.bob.env
+.bob/
+.bob*/
+k8s-logs/
+build
+
+### SonarQube Working Directory ###
+?/
+
+### Spinnaker Temporary Properties ###
+artifact.properties
+
+### REST2HTML Artifacts ###
+rest2html*.zip
+rest_conversion_log.txt
+**/*.zip
+
+### index.html & openapi sha256 files
+**/resources/v*/*.html
+.openapi-generator/
+
+### ignore CI-Jenkinsfiles
+ci/common_precodereview.Jenkinsfile
+ci/common_ruleset2.0.yaml
+ci/helm-dr-properties.yaml
+fossa-report.json
+
+#### Eclipse
+*/.classpath
+*/.project
+*/.settings
+
+.project
+.settings
+
+### Local Only Files
+eric-oss-rim-poc-app/src/main/resources/**/*.csv
+
+## Local test files
+eric-oss-rim-poc-app/src/main/resources/duct-1659571200000.jpg

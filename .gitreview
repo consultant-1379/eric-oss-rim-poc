@@ -1,0 +1,6 @@
+[gerrit]
+host=gerrit.ericsson.se
+port=29418
+project=OSS/com.ericsson.oss.apps/eric-oss-rim-poc
+defaultbranch=master
+defaultremote=origin

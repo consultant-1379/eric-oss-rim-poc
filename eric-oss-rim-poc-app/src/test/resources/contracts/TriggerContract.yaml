@@ -1,0 +1,32 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+description: triggers a pm loading for a specific ROP and customer
+name: trigger pm loading
+priority: 8
+request:
+  method: POST
+  urlPath: /v1/trigger/pmrop
+  headers:
+    Content-Type: application/json
+  body: '{
+     "customerId" : "200238",
+     "timeWarp" : 0,
+     "nRops" : 2
+   }'
+response:
+  status: 201
+  body: ""

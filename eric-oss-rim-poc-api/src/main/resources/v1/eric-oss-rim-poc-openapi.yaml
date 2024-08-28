@@ -1,0 +1,83 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+openapi: "3.0.2"
+info:
+  x-api-id: 3e43d9fe-1fc9-4e1c-af1a-594dfde601f2
+  x-audience: external-public
+  description: "RIM rApp prototype"
+  version: "0.0.1"
+  title: "RIM rApp prototype"
+  license:
+    name: "COPYRIGHT Ericsson 2022"
+    url: "https://www.ericsson.com/en/legal"
+  termsOfService: "https://www.ericsson.com/en/legal"
+  contact:
+    email: "Team Fremen<IDUN_rAppPrototypeTeam@ericsson.onmicrosoft.com>"
+tags:
+  - "triggers"
+paths:
+    /v1/trigger/pmrop:
+      post:
+        tags:
+          - "triggers"
+        summary: ""
+        operationId: "triggerPmRopLoading"
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PmRopTriggerRequest"
+        responses:
+          "201":
+            description: "Task requested"
+          "400":
+            description: "Invalid request"
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          default:
+            description: "Internal Server Error"
+
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    PmRopTriggerRequest:
+      type: object
+      required:
+        - customerId
+      properties:
+        timeStamp:
+          type: integer
+          format: int64
+          description: "hit this epoch (in milliseconds)."
+          default: 0
+        customerId:
+          description: "id of the customer, as in RDI data"
+          type: string
+        nRops:
+          type: integer
+          format: int32
+          description: "run this number of ROPs in sequence"
+          default: 1

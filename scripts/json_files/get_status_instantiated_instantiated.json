@@ -1,0 +1,26 @@
+{
+  "id": 16,
+  "appOnBoardingAppId": 22,
+  "healthStatus": "INSTANTIATED",
+  "targetStatus": "INSTANTIATED",
+  "createdTimestamp": "2022-12-13T10:43:16.315017Z[UTC]",
+  "additionalParameters": null,
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://eric-oss-app-lcm/app-manager/lcm/app-lcm/v1/app-instances/16"
+    },
+    {
+      "rel": "artifact-instances",
+      "href": "https://eric-oss-app-lcm/app-manager/lcm/app-lcm/v1/app-instances/16/artifact-instances"
+    },
+    {
+      "rel": "app",
+      "href": "https://eric-oss-app-lcm/app-manager/onboarding/v1/apps/22"
+    },
+    {
+      "rel": "artifacts",
+      "href": "https://eric-oss-app-lcm/app-manager/onboarding/v1/apps/22/artifacts"
+    }
+  ]
+}

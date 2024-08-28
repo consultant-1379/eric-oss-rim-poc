@@ -1,0 +1,60 @@
+@startuml
+
+start
+repeat
+    switch (test cell condition)
+    case ( is cell above delta IPN watermark \n and __UETP8__ < baseline? \n (enter mitigation) )
+        if (is cell already under \n mitigation? \n (has any change request)) then (yes)
+            else (no)
+                #Orange : Add mitigation request \n to cell and neighbors;
+                #Orange : Take note of original values;
+            endif;
+    case (is cell above delta IPN watermark \n and __UETP2__ < baseline? \n (further mitigation))
+         if (is cell under mitigation? \n (has any change request)) then (yes)
+             if (is cell under \n observation window T? \n (has a change been implemented \n since time T)\n  ) then (yes)
+             else (no)
+                #Orange : Add further mitigation request \n to cell and neighbors;
+             endif;
+         else (no)
+         endif;
+    case (is cell recovered \n (delta IPN less than low watermark)
+         if (is cell under mitigation? \n (has any change request)) then (yes)
+            #Orange: Wipe all the change requests \n from cell and neighbors \n with this cell as requester;
+         else (no)
+         endif;
+    endswitch
+repeat while (more cells?) is (yes)
+->no;
+
+
+#Orange: save all change requests in DB;
+
+    repeat
+    if (are there any change requests?) then (yes)
+        #Orange: calculate required cell parameter \n value based on requests;
+        if (is current parameter \n different from required?) then (yes)
+            #Orange: implement change to new value;
+            if (change successful?) then (yes)
+                #Orange : set: \n __change state__ to IMPLEMENTED \n __current value__ to new value \n __changed timestamp__ to current time;
+            else (no)
+                #Orange : set: \n __change state__ to FAILED;
+            endif;
+            #Orange : save to DB;
+         else (no)
+        endif;
+    else (no)
+        #Orange : implement change to original value;
+        if (rollback successful?) then (yes)
+            #Orange : remove change structure \n for the parameter;
+        else (no)
+            #Orange : set: \n __change state__ to FAILED;
+        endif;
+        #Orange : save to DB;
+    endif;
+
+
+repeat while (more cells?) is (yes)
+->no;
+end
+
+@enduml

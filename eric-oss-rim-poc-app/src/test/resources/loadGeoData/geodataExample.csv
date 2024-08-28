@@ -1,0 +1,7 @@
+bearing,fdn,lat,lon
+0,"SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR127gNodeBRadio00001,ManagedElement=NR127gNodeBRadio00001,GNBDUFunction=1,NRCellDU=NR127gNodeBRadio00001-1",34.05275,-82.71814
+120,"SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR127gNodeBRadio00001,ManagedElement=NR127gNodeBRadio00001,GNBDUFunction=1,NRCellDU=NR127gNodeBRadio00001-2",34.05275,-82.71814
+240,"SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR127gNodeBRadio00001,ManagedElement=NR127gNodeBRadio00001,GNBDUFunction=1,NRCellDU=NR127gNodeBRadio00001-3",34.05275,-82.71814
+60,"SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR127gNodeBRadio00001,ManagedElement=NR127gNodeBRadio00001,GNBDUFunction=1,NRCellDU=NR127gNodeBRadio00001-4",34.05275,-82.71814
+180,"SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR127gNodeBRadio00001,ManagedElement=NR127gNodeBRadio00001,GNBDUFunction=1,NRCellDU=NR127gNodeBRadio00001-5",34.05275,-82.71814
+300,"SubNetwork=Europe,SubNetwork=Ireland,MeContext=NR127gNodeBRadio00001,ManagedElement=NR127gNodeBRadio00001,GNBDUFunction=1,NRCellDU=NR127gNodeBRadio00001-6",34.05275,-82.71814

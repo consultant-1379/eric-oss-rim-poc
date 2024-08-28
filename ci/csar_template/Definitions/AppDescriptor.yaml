@@ -1,0 +1,39 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+Description of an APP:
+  APPName: eric-oss-rim-poc
+  APPVersion: VERSION
+  APPType: rApp
+APPComponent:
+  NameofComponent: eric-oss-rim-poc
+  Version: VERSION
+  Path: OtherDefinitions/ASD/eric-oss-rim-pocASD.yaml
+  ArtefactType: Microservice
+  #Configuration:
+  #    Path: /values.yaml
+  ServiceDependency:
+    Required:
+      - API: /cts/**
+      - API: /ncmp/**
+    Exposed:
+      - API: OtherDefinitions/ASD/eric-oss-rim-poc-openapi.yaml
+APPRoles:
+  - Name: NCMP
+  - Name: CTS
+APPPermissions:
+  - Resource: kafka
+    Scope: test

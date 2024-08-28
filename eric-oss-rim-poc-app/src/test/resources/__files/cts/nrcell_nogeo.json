@@ -1,0 +1,63 @@
+{{#unless request.path.[2] }}[{{/unless}}{
+  "type": "ctw/nrcell",
+  "id": 3,
+  "href": "ctw/nrcell/3",
+  "externalId": "92F1CB35798FD7D13BCC6FF825D89CD6/ericsson-enm-ComTop:ManagedElement=NR03gNodeBRadio00002/ericsson-enm-GNBDU:GNBDUFunction=1/ericsson-enm-GNBDU:NRCellDU=NR03gNodeBRadio00002-1",
+  "name": "Europe/Ireland/NR01gNodeBRadio00002/NR01gNodeBRadio00002/1/NR01gNodeBRadio00002-1",
+  "createdOn": "2022-07-25T22:40:33.033Z",
+  "createdBy": "sysadm",
+  "status": "operating",
+  "lastModifiedOn": "2022-07-25T22:41:22.455Z",
+  "lastModifiedBy": "sysadm",
+  "versionNumber": 2,
+  "revisionNumber": 1,
+  "revisionGroupKey": {
+    "type": "revisionGroupKey",
+    "keyValue": 6
+  },
+  "key": {
+    "type": "ctw/nrcellKey",
+    "keyValue": 3
+  },
+  "geographicSite": [
+    {
+      "mode": "LOADED",
+      "value": {
+        "type": "ctg/geographicsite",
+        "id": 5,
+        "href": "ctg/geographicsite/5",
+        "revisionGroupKey": {
+          "type": "revisionGroupKey",
+          "keyValue": 5
+        },
+        "key": {
+          "type": "ctg/geographicsiteKey",
+          "keyValue": 5
+        },
+        "locatedAt": [
+          {
+            "mode": "LOADED",
+            "value": {
+              "type": "ctg/geographiclocation",
+              "id": 7,
+              "href": "ctg/geographiclocation/7",
+              "externalId": "BTS3521",
+              "status": "operating",
+              "lastModifiedOn": "2022-07-25T21:48:14.378Z",
+              "lastModifiedBy": "sysadm",
+              "name": "Europe/Ireland/NR01gNodeBRadio00002/NR01gNodeBRadio00002/1/NR01gNodeBRadio00002-1/BTS3521",
+              "createdOn": "2022-07-25T21:48:14.378Z",
+              "createdBy": "sysadm",
+              "_type": "GeospatialCoords",
+              "versionNumber": 1,
+              "key": {
+                "type": "ctg/geographiclocationKey",
+                "keyValue": 7
+              },
+            }
+          }
+        ]
+      }
+    }
+  ]
+}{{#unless request.path.[2] }}]{{/unless}}

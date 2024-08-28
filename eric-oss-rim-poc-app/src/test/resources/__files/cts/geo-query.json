@@ -1,0 +1,46 @@
+[
+  {
+    "type": "ctw/nrcell",
+    "id": 3,
+    "href": "ctw/nrcell/3",
+    "externalId": "NR3521",
+    "name": "NR3521",
+    "createdOn": "2022-07-25T22:40:33.033Z",
+    "createdBy": "sysadm",
+    "status": "operating",
+    "lastModifiedOn": "2022-07-25T22:41:22.455Z",
+    "lastModifiedBy": "sysadm",
+    "versionNumber": 2,
+    "revisionNumber": 1,
+    "revisionGroupKey": {
+      "type": "revisionGroupKey",
+      "keyValue": 6
+    },
+    "key": {
+      "type": "ctw/nrcellKey",
+      "keyValue": 3
+    }
+  },
+  {
+    "type": "ctw/nrcell",
+    "id": 4,
+    "href": "ctw/nrcell/4",
+    "externalId": "NR3520",
+    "name": "NR3520",
+    "createdOn": "2022-07-25T22:41:22.422Z",
+    "createdBy": "sysadm",
+    "status": "operating",
+    "lastModifiedOn": "2022-07-25T22:41:22.422Z",
+    "lastModifiedBy": "sysadm",
+    "versionNumber": 1,
+    "revisionNumber": 1,
+    "revisionGroupKey": {
+      "type": "revisionGroupKey",
+      "keyValue": 7
+    },
+    "key": {
+      "type": "ctw/nrcellKey",
+      "keyValue": 4
+    }
+  }
+]
